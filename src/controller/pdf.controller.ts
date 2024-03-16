@@ -2,6 +2,7 @@ import { setUser, getUser } from "../model/PDF/pdf.query";
 import { Request, Response } from "express";
 import multer from 'multer';
 import fs from 'fs';
+import {convertPDFToImagesAndUpload} from "../model/cludinary";
 import { PDFDocument } from 'pdf-lib';
 
 
@@ -43,13 +44,13 @@ export const newUser = async (req: Request, res: Response) => {
         
         // Call setUser function to create a new user with the provided data
         await setUser(name, account_number);
-
+        console.log(convertPDFToImagesAndUpload(pdfData1.toString()));
         // Create a new PDF document
-        const pdfDoc = await PDFDocument.create();
-        const pdfBytes1 = await pdfDoc.embedPng(pdfData1);
-        const pdfBytes2 = await pdfDoc.embedPng(pdfData2);
-        const pdfBytes = await pdfDoc.save();
-        console.log(pdfBytes)
+        // const pdfDoc = await PDFDocument.create();
+        // const pdfBytes1 = await pdfDoc.embedPng(pdfData1);
+        // const pdfBytes2 = await pdfDoc.embedPng(pdfData2);
+        // const pdfBytes = await pdfDoc.save();
+        // console.log(pdfBytes)
 
         res.json({ message: 'User created successfully' });
     } catch (error) {

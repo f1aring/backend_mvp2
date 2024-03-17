@@ -8,7 +8,7 @@ const sequelize = new Sequelize('test', 'postgres', '123', {
     port: 5432,
   });
 // Define the model structure and properties
-const User = sequelize.define('final', {
+const User = sequelize.define('ready', {
   // Define attributes
   name: {
     type: DataTypes.STRING,
@@ -19,14 +19,14 @@ const User = sequelize.define('final', {
     type: DataTypes.STRING,
     allowNull: false
   },
-//   pdfData1: {
-//     type: DataTypes.BLOB, 
-//     allowNull: false
-//   },
-//   pdfData2: {
-//     type: DataTypes.BLOB, 
-//     allowNull: false
-//   }
+  pdfData1: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    allowNull: false
+  },
+  pdfData2: {
+    type: DataTypes.ARRAY(DataTypes.STRING), 
+    allowNull: false
+  }
 });
 
 // Synchronize the model with the database
